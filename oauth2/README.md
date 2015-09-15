@@ -31,6 +31,8 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 
 然后修改$JBOSS_HOME/standalone/configuration/standalone.xml：（具体可参考oauth2/configuration/standalone/standalone.xml）
 
+1. 配置安全域
+
 	<security-domain name="commerce" cache-type="default">
 		<authentication>
 			<login-module code="UsersRoles" flag="required">
@@ -39,20 +41,28 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 			</login-module>
 		</authentication>
 	</security-domain>
-
-and add SSL
-
-	<connector name="https" protocol="HTTP/1.1" scheme="https" socket-binding="https" secure="true">
-		<ssl name="ssl" key-alias="server" password="password" certificate-key-file="${jboss.server.config.dir}/server.jks" verify-client="false"/>
-	</connector>
 	
-enabled SSL：
-
-	<security-realm name="ManagementRealm">
+2. 启用SSL：
+ 
+	<security-realm name="MyRealm">
    		<server-identities>
-      		<ssl>
-         		<keystore path="server.keystore" relative-to="jboss.server.config.dir" keystore-password="keystore_password" alias="server" key-password="key_password" />
+			<ssl>
+				<keystore path="server.keystore" relative-to="jboss.server.config.dir" keystore-password="keystore_password" alias="server" key-password="key_password" />
          </ssl>
-		</server-identities>
-      ...
-	</security-realm>
+      </server-identities>
+   </security-realm>
+  
+3. 为SSL配置 Undertow subsystem：
+
+	<subsystem xmlns="urn:jboss:domain:undertow:2.0">
+		...
+		<server name="default-server">
+			...
+			<https-listener name="https" socket-binding="https" security-realm="MyRealm"/>
+			...
+		</server>
+	</subsystem>
+	
+Step 2: Boot Wildfly
+---------------------------------------
+Boot Wildfly in 'standalone' mode.
