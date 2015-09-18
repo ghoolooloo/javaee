@@ -31,7 +31,7 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 
 然后修改$JBOSS_HOME/standalone/configuration/standalone.xml：（具体可参考oauth2/configuration/standalone/standalone.xml）
 
-1. 配置安全域
+### 1. 配置安全域
 
 	<security-domain name="commerce" cache-type="default">
 		<authentication>
@@ -42,17 +42,17 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 		</authentication>
 	</security-domain>
 	
-2. 启用SSL：
- 
+### 2. 启用SSL：
+
 	<security-realm name="MyRealm">
-   		<server-identities>
+		<server-identities>
 			<ssl>
 				<keystore path="server.keystore" relative-to="jboss.server.config.dir" keystore-password="keystore_password" alias="server" key-password="key_password" />
-         </ssl>
-      </server-identities>
-   </security-realm>
-  
-3. 为SSL配置 Undertow subsystem：
+			</ssl>
+		</server-identities>
+	</security-realm>
+   
+### 3. 为SSL配置 Undertow subsystem：
 
 	<subsystem xmlns="urn:jboss:domain:undertow:2.0">
 		...
@@ -62,6 +62,7 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 			...
 		</server>
 	</subsystem>
+	
 	
 Step 2: Boot Wildfly
 ---------------------------------------
