@@ -20,18 +20,18 @@ machine on the network or Internet.
   to invoke on database services.
   
  
-Step 1: Copy configuration to Wildfly
+1: Copy configuration to Wildfly
 ---------------------------------------
 The OAUTH example comes with a configuration directory.  You must copy the contents to the standalone configuration of Wildfly
 
 1. cd oauth2/configuration/standalone
-2. cp *.jks $JBOSS_HOME/standalone/configuration
-3. cp *.ts $JBOSS_HOME/standalone/configuration
+2. cp *.keystore $JBOSS_HOME/standalone/configuration
+3. cp *.truststore $JBOSS_HOME/standalone/configuration
 4. cp *.properties $JBOSS_HOME/standalone/configuration
 
 然后修改$JBOSS_HOME/standalone/configuration/standalone.xml：（具体可参考oauth2/configuration/standalone/standalone.xml）
 
-### 1. 配置安全域
+### 1.1 配置安全域
 
 	<security-domain name="commerce" cache-type="default">
 		<authentication>
@@ -42,7 +42,7 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 		</authentication>
 	</security-domain>
 	
-### 2. 启用SSL：
+### 1.2 启用SSL：
 
 	<security-realm name="MyRealm">
 		<server-identities>
@@ -52,7 +52,7 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 		</server-identities>
 	</security-realm>
    
-### 3. 为SSL配置 Undertow subsystem：
+### 1.3 为SSL配置 Undertow subsystem：
 
 	<subsystem xmlns="urn:jboss:domain:undertow:2.0">
 		...
@@ -64,6 +64,36 @@ The OAUTH example comes with a configuration directory.  You must copy the conte
 	</subsystem>
 	
 	
-Step 2: Boot Wildfly
+2: Boot Wildfly
 ---------------------------------------
 Boot Wildfly in 'standalone' mode.
+
+
+3: 创建auth-server（认证服务器）
+---------------------------------------
+
+### 3.1 添加Auth服务配置文件
+
+将配置文件*.json到WEB-INF/下（也可以放在任意位置，这时要通过部署描述符中的context-param来指定）
+
+### 3.2 在部署描述符web.xml中配置security constraints等
+
+必须是FORM认证方式。
+
+### 3.3 在jboss-web.xml中配置安全域等
+
+### 3.4 在jboss-deployment-structure.xml中配置对skelenton key的依赖
+
+
+4: 创建Rest服务端——database-service
+----------------------------------------
+
+### 4.1 添加Auth服务配置文件
+
+可通过 https://.../auth-server/j_oauth_realm_info.html 来获取realm-public-key等信息。
+
+### 4.2 在部署描述符web.xml中配置security constraints等
+
+### 4.3 配置jboss-web.xml
+
+### 4.4 在jboss-deployment-structure.xml中配置对skelenton key的依赖等
