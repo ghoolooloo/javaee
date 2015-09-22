@@ -91,7 +91,7 @@ wildfly中默认没有包含skelenton key，要将它加入到modules目录下�
 
 ### 4.1 添加Auth服务配置文件
 
-可通过 https://.../auth-server/j_oauth_realm_info.html 来获取realm-public-key等信息。
+可通过 https://...:8443/auth-server/j_oauth_realm_info.html 来获取realm-public-key等信息。
 
 ### 4.2 在部署描述符web.xml中配置security constraints等
 
