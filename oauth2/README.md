@@ -83,6 +83,7 @@ Boot Wildfly in 'standalone' mode.
 ### 3.3 在jboss-web.xml中配置安全域等
 
 ### 3.4 在jboss-deployment-structure.xml中配置对skelenton key的依赖
+wildfly中默认没有包含skelenton key，要将它加入到modules目录下，并修改standalone.xml
 
 
 4: 创建Rest服务端——database-service

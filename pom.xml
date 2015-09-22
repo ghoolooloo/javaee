@@ -3,6 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+        <groupId>org.wildfly.bom</groupId>
+        <version>8.2.1.Final</version>
+        <artifactId>jboss-bom-parent</artifactId>
+    </parent>
 	<groupId>jo.javaee</groupId>
 	<artifactId>javaee</artifactId>
 	<version>1.0.0</version>
@@ -30,11 +35,10 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-6.0</artifactId>
-				<version>3.0.3.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>skeleton-key-core</artifactId>
+				<version>${version.org.jboss.resteasy}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
