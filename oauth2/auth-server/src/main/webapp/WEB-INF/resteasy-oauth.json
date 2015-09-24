@@ -5,7 +5,7 @@
    "oauth-client-role" : "oauth",
    "wildcard-role" : "*",
    "realm-keystore" : "${jboss.server.config.dir}/realm.keystore",
-   "realm-key-alias" : "triage",
+   "realm-key-alias" : "triageRealm",
    "realm-keystore-password" : "keystore_password",
    "realm-private-key-password" : "key_password"
 }

@@ -55,7 +55,7 @@
             <security-realm name="TriageRealm">
 				<server-identities>
 					<ssl>
-						<keystore path="server.keystore" relative-to="jboss.server.config.dir" keystore-password="keystore_password" alias="server" key-password="key_password" />
+						<keystore path="server.keystore" relative-to="jboss.server.config.dir" keystore-password="keystore_password" alias="triage" key-password="key_password" />
 					</ssl>
 				</server-identities>
 			</security-realm>
@@ -368,8 +368,8 @@
                 <security-domain name="triage-dev" cache-type="default">
                     <authentication>
 						<login-module code="UsersRoles" flag="required">
-							<module-option name="usersProperties" value="${jboss.server.config.dir}/commerce-users.properties"/>
-							<module-option name="rolesProperties" value="${jboss.server.config.dir}/commerce-roles.properties"/>
+							<module-option name="usersProperties" value="${jboss.server.config.dir}/triage-users.properties"/>
+							<module-option name="rolesProperties" value="${jboss.server.config.dir}/triage-roles.properties"/>
 						</login-module>
 					</authentication>
 				</security-domain>
