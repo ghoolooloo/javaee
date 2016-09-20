@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>javaee</artifactId>
+    <groupId>jo.javaee</groupId>
+    <version>1.0.1</version>
+    <relativePath>..\pom.xml</relativePath>
+  </parent>
+  <artifactId>jpa</artifactId>
+  <groupId>jo.javaee.jpa</groupId>
+  <version>1.0.0</version>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+  </build>
+  <packaging>pom</packaging>
+  <modules>
+    <module>cascade</module>
+  </modules>
+  <profiles>
+    <profile>
+      <!-- 执行：mvn clean test -Parq-wildfly-managed -->
+      <id>arq-wildfly-managed</id>
+      <dependencies>
+         <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-container-managed</artifactId>
+            <scope>test</scope>
+         </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <!-- 执行：mvn clean test -Parq-wildfly-remote -->
+      <!-- 需要事先手动启动wildfly应用服务器 -->
+      <id>arq-wildfly-remote</id>
+      <dependencies>
+         <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-container-remote</artifactId>
+            <scope>test</scope>
+         </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+</project>
