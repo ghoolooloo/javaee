@@ -21,19 +21,14 @@
         http://xmlns.jcp.org/xml/ns/persistence
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
    <persistence-unit name="cascade-persistence-unit" transaction-type="JTA">
-      <!-- We use a different datasource for tests, so as to not overwrite 
-         production data. This is an unmanaged data source, backed by H2, an in memory 
-         database. Production applications should use a managed datasource. -->
       <provider>org.hibernate.ejb.HibernatePersistence</provider>
-      <!-- The datasource is deployed as WEB-INF/h2-ds.xml, 
-         you can find it in the source at src/test/resources/h2-ds.xml -->
-      <jta-data-source>java:jboss/datasources/h2DS</jta-data-source>
+      <jta-data-source>java:jboss/datasources/mysqlDS</jta-data-source>
       <properties>
          <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create" />
+         <property name="hibernate.hbm2ddl.auto" value="update" />
          <property name="hibernate.show_sql" value="true" />
          <property name="hibernate.format_sql" value="false"/>
-         <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
          <!-- <property name="hibernate.transaction.flush_before_completion" value="true"/> -->
       </properties>
    </persistence-unit>

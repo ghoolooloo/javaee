@@ -1,0 +1,1 @@
+不存在单向的OneToMany，有OneToMany，必定有ManyToOne。
